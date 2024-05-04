@@ -1,7 +1,7 @@
 function(context, args) {
-    let itemsToDelete = ["log_writer_v1", "expose_access_log_v1", "w4rn_message", "w4rn_er", "public_script_v1", "w4rn", "cron_bot_v1", "channel_count_v1", "CON_TELL"];
+    let itemsToDelete = ["log_writer_v1", "expose_access_log_v1", "w4rn_message", "w4rn_er", "public_script_v1", "w4rn", "cron_bot_v1", "channel_count_v1", "CON_TELL", "l0cket", "char_count_v1"];
     let excludeList = ["k3y_v1", "k3y_v2"]; // Items to exclude from deletion
-    let excludeRarities = [2, 3, 4]; // Array to hold excluded rarities
+    let excludeRarity = [1, 2, 3, 4]; // Array to hold excluded rarities
     let idsToDelete = new Set();
     let itemInstances = {}; // To track occurrences of each item
 
@@ -39,13 +39,13 @@ function(context, args) {
     let idsArray = Array.from(idsToDelete);
 
     // Debug output to track which IDs are marked for deletion
-    #D({msg: "Final IDs to Delete", data: idsArray});
+    //#D({msg: "F", data: idsArray});
 
     // Perform the cull if there are items to delete
     if (idsArray.length > 0) {
         let cullResult = #ls.sys.cull({i: idsArray, confirm: true});
         return {success: cullResult.ok};
     } else {
-        return {note: "No items matched for deletion."};
+        return {note: "No items matched for deletion"};
     }
 }
